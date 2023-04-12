@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Charging Animation</string>
+    <string name="setup">Setup</string>
+    <string name="setup_continue">Continue</string>
+    <string name="setup_skip">Skip</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="setup_draw_over_other_apps">Display over other apps</string>
+    <string name="setup_draw_over_other_apps_summary">This permission is required to show the charging animation.</string>
+    <string name="setup_phone_state">Read Phone State</string>
+    <string name="setup_phone_state_summary">This permission is required to stop the charging animation for incoming calls.</string>
+    <string name="setup_error">Something went wrong! Please try again!</string>
+
+    <string name="charged">%1$d%% Charged</string>
+</resources>
