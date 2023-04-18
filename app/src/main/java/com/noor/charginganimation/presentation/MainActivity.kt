@@ -4,6 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.noor.charginganimation.R
 import com.noor.charginganimation.core.extensions.click
 import com.noor.charginganimation.core.utils.PrefUtils.isAlwaysOn
 import com.noor.charginganimation.databinding.ActivityMainBinding
@@ -13,29 +19,19 @@ class MainActivity : AppCompatActivity() {
     private val binding: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        val navHostFragment: NavHostFragment = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+
+        navController = navHostFragment.findNavController()
+        binding.bottomNavigation.setupWithNavController(navController)
+
         ContextCompat.startForegroundService(this, Intent(this, ForegroundService::class.java))
-
-        binding.switch1.setOnCheckedChangeListener { _, isChecked ->
-            isAlwaysOn = isChecked
-        }
-
-        binding.buttonBatteryInfo.click {
-            startActivity(Intent(this, BatteryInfoActivity::class.java))
-        }
-
-        binding.buttonDeviceInfo.click {
-            startActivity(Intent(this, DeviceInfoActivity::class.java))
-        }
-    }
-
-    override fun onStart() {
-        binding.switch1.isChecked = isAlwaysOn
-        super.onStart()
     }
 
     /*override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {

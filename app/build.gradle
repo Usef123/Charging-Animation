@@ -47,6 +47,11 @@ dependencies {
     def lottieVersion = "5.2.0"
     implementation "com.airbnb.android:lottie:$lottieVersion"
 
+    // navigation component
+    def navigation_version = "2.5.3"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
+
     // Hilt
     def hilt_version = "2.44"
     implementation "com.google.dagger:hilt-android:$hilt_version"

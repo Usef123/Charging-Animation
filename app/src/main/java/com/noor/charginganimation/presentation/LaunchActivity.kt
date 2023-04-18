@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.noor.charginganimation.core.utils.PrefUtils.isSetupComplete
+import com.noor.charginganimation.presentation.setup.SetupActivity
 
 class LaunchActivity : AppCompatActivity() {
 

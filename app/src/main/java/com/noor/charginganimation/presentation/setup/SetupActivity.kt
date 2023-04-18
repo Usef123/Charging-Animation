@@ -1,4 +1,4 @@
-package com.noor.charginganimation.presentation
+package com.noor.charginganimation.presentation.setup
 
 import android.Manifest
 import android.content.Intent
@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
@@ -15,8 +14,7 @@ import com.noor.charginganimation.R
 import com.noor.charginganimation.core.extensions.click
 import com.noor.charginganimation.core.utils.PrefUtils.isSetupComplete
 import com.noor.charginganimation.databinding.ActivitySetupBinding
-import com.noor.charginganimation.presentation.setup.DrawOverOtherAppsFragment
-import com.noor.charginganimation.presentation.setup.PhoneStateFragment
+import com.noor.charginganimation.presentation.MainActivity
 
 class SetupActivity : AppCompatActivity() {
     private val binding: ActivitySetupBinding by lazy {

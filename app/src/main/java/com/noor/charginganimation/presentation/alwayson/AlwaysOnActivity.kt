@@ -1,37 +1,34 @@
-package com.noor.charginganimation.presentation
+package com.noor.charginganimation.presentation.alwayson
 
 import android.content.Intent
 import android.content.IntentFilter
-import android.os.*
-import androidx.appcompat.app.AppCompatActivity
-import android.view.WindowManager
-import android.widget.TextView
-import android.widget.Toast
+import android.os.BatteryManager
+import android.os.Bundle
 import com.noor.charginganimation.R
-import com.noor.charginganimation.core.utils.VersionUtils.hasP
 import com.noor.charginganimation.databinding.ActivityAlwaysOnBinding
-import com.noor.charginganimation.receivers.CombinedServiceReceiver
 import com.noor.charginganimation.receivers.CombinedServiceReceiver.Companion.isAlwaysOnRunning
+import timber.log.Timber
 
-class AlwaysOnActivity : AppCompatActivity() {
+class AlwaysOnActivity : OffActivity() {
     private val binding: ActivityAlwaysOnBinding by lazy {
         ActivityAlwaysOnBinding.inflate(layoutInflater)
+    }
+
+    companion object {
+        private var instance: AlwaysOnActivity? = null
+
+        fun finish() {
+            Timber.d("AlwaysOnActivity: always on finished!")
+            instance?.finish()
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        if (hasP()) {
-            setShowWhenLocked(true)
-            setTurnScreenOn(true)
-        } else {
-            @Suppress("DEPRECATION")
-            window.addFlags(
-                WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED or
-                        WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
-            )
-        }
+        turnOnScreen()
+//        fullscreen(binding.root)
 
         val level = registerReceiver(null, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
             ?.getIntExtra(BatteryManager.EXTRA_LEVEL, 0)
@@ -48,6 +45,33 @@ class AlwaysOnActivity : AppCompatActivity() {
             level >= 20 -> batteryIcn.setImageResource(R.drawable.ic_battery_20)
             level >= 0 -> batteryIcn.setImageResource(R.drawable.ic_battery_0)
             else -> batteryIcn.setImageResource(R.drawable.ic_battery_unknown)
+        }*/
+
+        //DoubleTap
+        /*if (!prefs.get(P.DISABLE_DOUBLE_TAP, P.DISABLE_DOUBLE_TAP_DEFAULT)) {
+            val doubleTapDetector = DoubleTapDetector({
+                val duration = prefs.get("ao_vibration", 64).toLong()
+                if (duration > 0) {
+                    val vibrator =
+                        getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        vibrator.vibrate(
+                            VibrationEffect.createOneShot(
+                                duration,
+                                VibrationEffect.DEFAULT_AMPLITUDE
+                            )
+                        )
+                    } else {
+                        @Suppress("DEPRECATION")
+                        vibrator.vibrate(duration)
+                    }
+                }
+                finish()
+            }, prefs.get(P.DOUBLE_TAP_SPEED, P.DOUBLE_TAP_SPEED_DEFAULT))
+            viewHolder.frame.setOnTouchListener { v, event ->
+                doubleTapDetector.onTouchEvent(event)
+                v.performClick()
+            }
         }*/
     }
 
