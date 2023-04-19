@@ -8,14 +8,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.registerReceiver
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import androidx.navigation.fragment.findNavController
 import com.noor.charginganimation.R
 import com.noor.charginganimation.core.extensions.click
 import com.noor.charginganimation.core.extensions.toast
 import com.noor.charginganimation.core.utils.PrefUtils.isAlwaysOn
 import com.noor.charginganimation.databinding.FragmentHomeBinding
-import com.noor.charginganimation.presentation.BatteryInfoActivity
-import com.noor.charginganimation.presentation.DeviceInfoActivity
 
 class HomeFragment : Fragment() {
     private var binding: FragmentHomeBinding? = null
@@ -39,6 +39,14 @@ class HomeFragment : Fragment() {
         binding?.tvBatteryStatus?.text = resources.getString(R.string.charged_percent, level)
     }
 
+    override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation? {
+        return if (enter) {
+            AnimationUtils.loadAnimation(context, android.R.anim.fade_in)
+        } else {
+            AnimationUtils.loadAnimation(context, android.R.anim.fade_out)
+        }
+    }
+
     private fun setupListeners() {
         binding?.switchAOD?.setOnCheckedChangeListener { _, isChecked ->
             isAlwaysOn = isChecked
@@ -57,11 +65,11 @@ class HomeFragment : Fragment() {
         }
 
         binding?.btnDeviceInfo?.click {
-            startActivity(Intent(requireContext(), DeviceInfoActivity::class.java))
+            findNavController().navigate(R.id.action_homeFragment_to_deviceInfoFragment)
         }
 
         binding?.btnBatteryInfo?.click {
-            startActivity(Intent(requireContext(), BatteryInfoActivity::class.java))
+            findNavController().navigate(R.id.action_homeFragment_to_batteryInfoFragment)
         }
 
         binding?.btnGuide?.click {
