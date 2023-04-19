@@ -1,4 +1,4 @@
-package com.noor.charginganimation.presentation.setup
+package com.noor.charginganimation.presentation.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,24 +8,29 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import com.noor.charginganimation.R
-import com.noor.charginganimation.databinding.FragmentDrawOverOtherAppsBinding
+import com.noor.charginganimation.databinding.FragmentSettingsBinding
 
-class DrawOverOtherAppsFragment : Fragment() {
-    private var binding: FragmentDrawOverOtherAppsBinding? = null
+class SettingsFragment : Fragment() {
+    private var binding: FragmentSettingsBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentDrawOverOtherAppsBinding.inflate(inflater, container, false)
+        binding = FragmentSettingsBinding.inflate(inflater, container, false)
         return binding?.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
+
     override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation? {
-        return if (enter)
+        return if (enter) {
             AnimationUtils.loadAnimation(context, android.R.anim.fade_in)
-        else
+        } else {
             AnimationUtils.loadAnimation(context, android.R.anim.fade_out)
+        }
     }
 }

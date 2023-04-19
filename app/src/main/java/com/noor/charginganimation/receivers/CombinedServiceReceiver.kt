@@ -3,13 +3,14 @@ package com.noor.charginganimation.receivers
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.widget.Toast
+import com.noor.charginganimation.core.extensions.toast
 import com.noor.charginganimation.core.utils.PrefUtils.isAlwaysOn
-import com.noor.charginganimation.presentation.AlwaysOnActivity
+import com.noor.charginganimation.presentation.alwayson.AlwaysOnActivity
 import timber.log.Timber
 
-class CombinedServiceReceiver: BroadcastReceiver() {
+class CombinedServiceReceiver : BroadcastReceiver() {
 
+    var isScreenOn: Boolean = true
     private var isCharging = false
 
     companion object {
@@ -21,6 +22,7 @@ class CombinedServiceReceiver: BroadcastReceiver() {
             Intent.ACTION_POWER_CONNECTED -> {
                 isCharging = true
                 Timber.d("onReceive: power connected!")
+                context?.toast("connected!")
                 if (isAlwaysOn) {
                     context?.startActivity(
                         Intent(context, AlwaysOnActivity::class.java)
@@ -31,19 +33,21 @@ class CombinedServiceReceiver: BroadcastReceiver() {
             Intent.ACTION_POWER_DISCONNECTED -> {
                 isCharging = false
                 Timber.d("onReceive: power disconnected!")
-//                Toast.makeText(context, "disconnected!", Toast.LENGTH_SHORT).show()
-//                AlwaysOnActivity.finish()
+                context?.toast("disconnected!")
+                AlwaysOnActivity.finish()
             }
             Intent.ACTION_SCREEN_OFF -> {
+                isScreenOn = false
                 Timber.d("onReceive: screen off!")
-                if (isCharging && !isAlwaysOnRunning) {
+                /*if (isAlwaysOn && *//*isCharging &&*//* !isAlwaysOnRunning) {
                     context?.startActivity(
                         Intent(context, AlwaysOnActivity::class.java)
                             .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     )
-                }
+                }*/
             }
             Intent.ACTION_SCREEN_ON -> {
+                isScreenOn = true
                 Timber.d("onReceive: screen on!")
             }
         }

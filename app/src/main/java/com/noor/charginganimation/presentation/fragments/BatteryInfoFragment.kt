@@ -1,4 +1,4 @@
-package com.noor.charginganimation.presentation
+package com.noor.charginganimation.presentation.fragments
 
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -6,32 +6,51 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.BatteryManager
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import com.noor.charginganimation.core.extensions.toast
-import com.noor.charginganimation.databinding.ActivityBatteryInfoBinding
+import com.noor.charginganimation.core.utils.Utils
+import com.noor.charginganimation.databinding.FragmentBatteryInfoBinding
 
-
-class BatteryInfoActivity : AppCompatActivity() {
-    private val binding: ActivityBatteryInfoBinding by lazy {
-        ActivityBatteryInfoBinding.inflate(layoutInflater)
-    }
+class BatteryInfoFragment : Fragment() {
+    private var binding: FragmentBatteryInfoBinding? = null
 
     private var intentFilter: IntentFilter? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(binding.root)
+    private val broadcastReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent) {
+            updateBatteryData(intent)
+        }
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        binding = FragmentBatteryInfoBinding.inflate(inflater, container, false)
+        return binding?.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         intentFilter = IntentFilter(Intent.ACTION_POWER_CONNECTED)
         intentFilter = IntentFilter(Intent.ACTION_POWER_DISCONNECTED)
         intentFilter = IntentFilter(Intent.ACTION_BATTERY_CHANGED)
 
-        registerReceiver(broadcastReceiver, intentFilter)
+        activity?.registerReceiver(broadcastReceiver, intentFilter)
     }
 
-    private val broadcastReceiver: BroadcastReceiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context?, intent: Intent) {
-            updateBatteryData(intent)
+    override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation? {
+        return if (enter) {
+            AnimationUtils.loadAnimation(context, android.R.anim.fade_in)
+        } else {
+            AnimationUtils.loadAnimation(context, android.R.anim.fade_out)
         }
     }
 
@@ -121,26 +140,18 @@ class BatteryInfoActivity : AppCompatActivity() {
                 stringBuilder.append("Voltage : $voltage mV\n")
             }
 
-            val capacity = getBatteryCapacity(this)
+            val capacity = Utils.getBatteryCapacity(requireContext())
 
             if (capacity > 0) {
                 stringBuilder.append("Capacity : $capacity mAh\n")
             }
 
-            binding.textView.text = stringBuilder.toString()
-        } else toast("No battery found!")
-    }
-
-    private fun getBatteryCapacity(ctx: Context): Long {
-        val mBatteryManager = ctx.getSystemService(BATTERY_SERVICE) as BatteryManager
-        val chargeCounter =
-            mBatteryManager.getLongProperty(BatteryManager.BATTERY_PROPERTY_CHARGE_COUNTER)
-        val capacity = mBatteryManager.getLongProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)
-        return (chargeCounter.toFloat() / capacity.toFloat() * 100f).toLong()
+            binding?.textView?.text = stringBuilder.toString()
+        } else activity?.toast("No battery found!")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        unregisterReceiver(broadcastReceiver)
+        activity?.unregisterReceiver(broadcastReceiver)
     }
 }

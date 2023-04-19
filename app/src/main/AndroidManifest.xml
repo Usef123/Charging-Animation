@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.REORDER_TASKS" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
@@ -19,13 +20,7 @@
         android:theme="@style/Theme.ChargingAnimation"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.DeviceInfoActivity"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.BatteryInfoActivity"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.AlwaysOnActivity"
+            android:name=".presentation.alwayson.AlwaysOnActivity"
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -34,10 +29,12 @@
             android:taskAffinity=""
             android:theme="@style/AppThemeScreenOff" />
         <activity
-            android:name=".presentation.SetupActivity"
+            android:name=".presentation.setup.SetupActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".presentation.LaunchActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,6 +44,7 @@
         </activity>
         <activity
             android:name=".presentation.MainActivity"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:launchMode="singleTask" />
 

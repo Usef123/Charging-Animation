@@ -12,4 +12,15 @@
     <string name="setup_error">Something went wrong! Please try again!</string>
 
     <string name="charged">%1$d%% Charged</string>
+    <string name="charged_percent">%1$d%%</string>
+    <string name="animation">Animation</string>
+    <string name="home">Home</string>
+    <string name="settings">Settings</string>
+    <string name="remaining">Remaining</string>
+    <string name="battery_animation">Battery Animation</string>
+    <string name="themes">Themes</string>
+    <string name="alarm">Alarm</string>
+    <string name="device_info">Device Info</string>
+    <string name="battery_info">Battery Info</string>
+    <string name="guide">Guide</string>
 </resources>

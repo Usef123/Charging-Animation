@@ -7,10 +7,15 @@ import com.noor.charginganimation.core.Constants.APP_PREFS
 import com.noor.charginganimation.core.Constants.IS_ALWAYS_ON
 import com.noor.charginganimation.core.Constants.IS_FIRST_TIME
 import com.noor.charginganimation.core.Constants.IS_SETUP_COMPLETE
+import com.noor.charginganimation.core.Constants.SCREEN_ORIENTATION
 
 object PrefUtils {
     private val sharedPreferences =
         App.getContext().getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE)
+
+    var screenOrientation
+        get() = sharedPreferences.getString(SCREEN_ORIENTATION, "locked")
+        set(value) = sharedPreferences.edit { putString(SCREEN_ORIENTATION, value) }
 
     var isAlwaysOn
         get() = sharedPreferences.getBoolean(IS_ALWAYS_ON, false)

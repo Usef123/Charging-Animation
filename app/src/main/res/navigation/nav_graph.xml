@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/animFragment"
+        android:name="com.noor.charginganimation.presentation.fragments.AnimFragment"
+        android:label="Animation"
+        tools:layout="@layout/fragment_anim" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.noor.charginganimation.presentation.fragments.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_deviceInfoFragment"
+            app:destination="@id/deviceInfoFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_batteryInfoFragment"
+            app:destination="@id/batteryInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.noor.charginganimation.presentation.fragments.SettingsFragment"
+        android:label="Settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/deviceInfoFragment"
+        android:name="com.noor.charginganimation.presentation.fragments.DeviceInfoFragment"
+        android:label="fragment_device_info"
+        tools:layout="@layout/fragment_device_info" />
+    <fragment
+        android:id="@+id/batteryInfoFragment"
+        android:name="com.noor.charginganimation.presentation.fragments.BatteryInfoFragment"
+        android:label="fragment_battery_info"
+        tools:layout="@layout/fragment_battery_info" />
+</navigation>
