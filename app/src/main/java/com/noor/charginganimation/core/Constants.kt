@@ -10,5 +10,6 @@ object Constants {
     const val IS_FIRST_TIME = "IS_FIRST_TIME"
     const val IS_SETUP_COMPLETE = "IS_SETUP_COMPLETE"
     const val IS_ALWAYS_ON = "IS_ALWAYS_ON"
+    const val IS_DOUBLE_TAP_ON = "IS_DOUBLE_TAP_ON"
     const val SCREEN_ORIENTATION = "SCREEN_ORIENTATION"
 }

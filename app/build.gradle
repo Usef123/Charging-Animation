@@ -43,6 +43,9 @@ dependencies {
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
+    // liquid animation
+    implementation "me.itangqi.waveloadingview:library:0.3.5"
+
     // Lottie
     def lottieVersion = "5.2.0"
     implementation "com.airbnb.android:lottie:$lottieVersion"
