@@ -43,7 +43,7 @@
         app:layout_constraintTop_toBottomOf="@+id/switchAOD"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/charging_main" />
+        app:lottie_rawRes="@raw/loop_dots" />
 
     <TextView
         android:id="@+id/tvBatteryStatus"

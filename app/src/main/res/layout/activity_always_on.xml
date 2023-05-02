@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.noor.charginganimation.core.custom.CustomFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:alpha=".5"
+    android:keepScreenOn="true"
     android:background="@color/black"
     android:padding="24dp"
     tools:context=".presentation.alwayson.AlwaysOnActivity">
@@ -26,6 +28,7 @@
         android:id="@+id/tvBattery"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
         android:layout_marginBottom="24dp"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -37,6 +40,7 @@
         android:id="@+id/animationView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -50,4 +54,4 @@
 <!--    app:lottie_url="https://assets6.lottiefiles.com/datafiles/oqpSfpu9yUPuteT/data.json"-->
     <!--app:lottie_url="https://assets6.lottiefiles.com/packages/lf20_E0dyi6THpB.json"-->
     <!--app:lottie_url="https://assets6.lottiefiles.com/packages/lf20_gy9z3wux.json"-->
-</androidx.constraintlayout.widget.ConstraintLayout>
+</com.noor.charginganimation.core.custom.CustomFrameLayout>

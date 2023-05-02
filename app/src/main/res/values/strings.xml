@@ -23,4 +23,25 @@
     <string name="device_info">Device Info</string>
     <string name="battery_info">Battery Info</string>
     <string name="guide">Guide</string>
+
+    <string name="battery_status_charging">Charging</string>
+    <string name="battery_status_discharging">Disconnected</string>
+    <string name="battery_status_full">Battery full</string>
+    <string name="battery_status_unknown">Unknown</string>
+    <string name="battery_status_not_charging">not charging</string>
+    <string name="battery">Battery</string>
+    <string name="battery_health">Battery Health</string>
+    <string name="voltage">Voltage</string>
+    <string name="temperature">Temperature</string>
+    <string name="battery_type">Battery Type</string>
+    <string name="battery_information">Battery Information</string>
+    <string name="device_information">Device Information</string>
+    <string name="brand">Brand</string>
+    <string name="device_id">Device ID</string>
+    <string name="model">Model</string>
+    <string name="sdk">SDK</string>
+    <string name="cpu">CPU</string>
+    <string name="ram">RAM</string>
+    <string name="fingerprint">Fingerprint</string>
+    <string name="display">Display</string>
 </resources>

@@ -1,10 +1,21 @@
 package com.noor.charginganimation.presentation.alwayson
 
+import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.BatteryManager
+import android.os.Build
 import android.os.Bundle
+import android.os.VibrationEffect
+import android.os.Vibrator
+import android.view.HapticFeedbackConstants
+import android.view.MotionEvent
+import android.view.View
+import android.view.ViewConfiguration
 import com.noor.charginganimation.R
+import com.noor.charginganimation.core.custom.DoubleTapDetector
+import com.noor.charginganimation.core.utils.PrefUtils.isDoubleTapOn
+import com.noor.charginganimation.core.utils.VersionUtils.hasOreo
 import com.noor.charginganimation.databinding.ActivityAlwaysOnBinding
 import com.noor.charginganimation.receivers.CombinedServiceReceiver.Companion.isAlwaysOnRunning
 import timber.log.Timber
@@ -28,7 +39,7 @@ class AlwaysOnActivity : OffActivity() {
         setContentView(binding.root)
 
         turnOnScreen()
-//        fullscreen(binding.root)
+        fullscreen(binding.root)
 
         val level = registerReceiver(null, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
             ?.getIntExtra(BatteryManager.EXTRA_LEVEL, 0)
@@ -48,16 +59,16 @@ class AlwaysOnActivity : OffActivity() {
         }*/
 
         //DoubleTap
-        /*if (!prefs.get(P.DISABLE_DOUBLE_TAP, P.DISABLE_DOUBLE_TAP_DEFAULT)) {
+        if (isDoubleTapOn) {
             val doubleTapDetector = DoubleTapDetector({
-                val duration = prefs.get("ao_vibration", 64).toLong()
+                /*val duration = *//*prefs.get("ao_vibration", 64).toLong()*//* 64
                 if (duration > 0) {
                     val vibrator =
                         getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    if (hasOreo()) {
                         vibrator.vibrate(
                             VibrationEffect.createOneShot(
-                                duration,
+                                duration.toLong(),
                                 VibrationEffect.DEFAULT_AMPLITUDE
                             )
                         )
@@ -65,14 +76,16 @@ class AlwaysOnActivity : OffActivity() {
                         @Suppress("DEPRECATION")
                         vibrator.vibrate(duration)
                     }
-                }
+                }*/
+                binding.root.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
                 finish()
-            }, prefs.get(P.DOUBLE_TAP_SPEED, P.DOUBLE_TAP_SPEED_DEFAULT))
-            viewHolder.frame.setOnTouchListener { v, event ->
+            }, /*prefs.get(P.DOUBLE_TAP_SPEED, P.DOUBLE_TAP_SPEED_DEFAULT)*/ ViewConfiguration.getDoubleTapTimeout())
+
+            binding.root.setOnTouchListener { v, event ->
                 doubleTapDetector.onTouchEvent(event)
                 v.performClick()
             }
-        }*/
+        }
     }
 
     override fun onStart() {
