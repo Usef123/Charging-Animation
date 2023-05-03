@@ -1,5 +1,7 @@
 package com.noor.charginganimation.presentation.fragments
 
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.BatteryManager
@@ -20,6 +22,51 @@ import com.noor.charginganimation.databinding.FragmentHomeBinding
 class HomeFragment : Fragment() {
     private var binding: FragmentHomeBinding? = null
 
+    private var intentFilter: IntentFilter? = null
+    private val broadcastReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent) {
+            updateBatteryData(intent)
+        }
+    }
+
+    private fun updateBatteryData(intent: Intent) {
+        val present = intent.getBooleanExtra(BatteryManager.EXTRA_PRESENT, false)
+
+        val level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1)
+        if (level != -1) {
+            binding?.tvBatteryStatus?.text = resources.getString(R.string.charged_percent, level)
+        }
+
+        if (present) {
+            val status = intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1)
+
+            when (status) {
+                BatteryManager.BATTERY_STATUS_CHARGING -> {
+                    binding?.animationView?.setAnimation(R.raw.charging)
+                }
+
+                BatteryManager.BATTERY_STATUS_DISCHARGING -> {
+                    binding?.animationView?.cancelAnimation()
+                }
+
+                BatteryManager.BATTERY_STATUS_FULL -> {
+                    binding?.animationView?.cancelAnimation()
+                }
+
+                BatteryManager.BATTERY_STATUS_UNKNOWN -> {
+                    binding?.animationView?.cancelAnimation()
+                }
+
+                BatteryManager.BATTERY_STATUS_NOT_CHARGING -> {
+                    binding?.animationView?.cancelAnimation()
+                }
+                else -> {
+                    binding?.animationView?.cancelAnimation()
+                }
+            }
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,10 +80,13 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupListeners()
 
-        val level = activity?.registerReceiver(null, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
-            ?.getIntExtra(BatteryManager.EXTRA_LEVEL, 0)
-            ?: 0
-        binding?.tvBatteryStatus?.text = resources.getString(R.string.charged_percent, level)
+        intentFilter = IntentFilter(Intent.ACTION_POWER_CONNECTED)
+        intentFilter = IntentFilter(Intent.ACTION_POWER_DISCONNECTED)
+        intentFilter = IntentFilter(Intent.ACTION_BATTERY_CHANGED)
+
+        activity?.registerReceiver(broadcastReceiver, intentFilter)
+
+//        binding?.animationView?.setAnimation(R.raw.charging)
     }
 
     override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation? {
@@ -80,5 +130,10 @@ class HomeFragment : Fragment() {
     override fun onStart() {
         binding?.switchAOD?.isChecked = isAlwaysOn
         super.onStart()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        activity?.unregisterReceiver(broadcastReceiver)
     }
 }
