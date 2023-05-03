@@ -34,16 +34,15 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animationView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="230dp"
+        android:layout_height="230dp"
         app:layout_constraintBottom_toTopOf="@id/footer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/switchAOD"
         app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/loop_dots" />
+        app:lottie_loop="true" />
 
     <TextView
         android:id="@+id/tvBatteryStatus"

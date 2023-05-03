@@ -17,8 +17,8 @@ fun View.forEachChildView(closure: (View) -> Unit) {
     }
 }
 
-infix fun View.click(onClick: () -> Unit) {
-    setOnClickListener { onClick() }
+infix fun View.click(onClick: (view: View) -> Unit) {
+    setOnClickListener { onClick(this) }
 }
 
 fun View.show() {

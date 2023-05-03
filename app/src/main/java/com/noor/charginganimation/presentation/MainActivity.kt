@@ -16,7 +16,9 @@ import com.noor.charginganimation.core.extensions.show
 import com.noor.charginganimation.core.utils.PrefUtils.isAlwaysOn
 import com.noor.charginganimation.databinding.ActivityMainBinding
 import com.noor.charginganimation.domain.services.ForegroundService
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private val binding: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
