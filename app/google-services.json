@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "145004678481",
+    "project_id": "charging-animation-468fd",
+    "storage_bucket": "charging-animation-468fd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:145004678481:android:096805d3b03fed03e5d770",
+        "android_client_info": {
+          "package_name": "com.noor.charginganimation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "145004678481-v23ihk75jvf26l6lgo0hmhkthhhjudni.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpERApARJ0AxLw9LQna5KYFkKrKHfb_Dk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "145004678481-v23ihk75jvf26l6lgo0hmhkthhhjudni.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
