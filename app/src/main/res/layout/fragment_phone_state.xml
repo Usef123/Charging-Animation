@@ -27,6 +27,6 @@
         android:layout_gravity="center"
         android:layout_margin="16dp"
         android:contentDescription="@null"
-        app:srcCompat="@drawable/ic_phone"
+        app:srcCompat="@drawable/ic_mobile"
         app:tint="@color/purple_200" />
 </LinearLayout>
