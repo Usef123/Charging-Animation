@@ -12,4 +12,9 @@ object Constants {
     const val IS_ALWAYS_ON = "IS_ALWAYS_ON"
     const val IS_DOUBLE_TAP_ON = "IS_DOUBLE_TAP_ON"
     const val SCREEN_ORIENTATION = "SCREEN_ORIENTATION"
+
+    const val ABSTRACT = "abstract"
+    const val CARTOON = "cartoon"
+    const val HEART = "heart"
+    const val CHARGING = "charging"
 }

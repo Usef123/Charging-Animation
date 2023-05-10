@@ -44,4 +44,9 @@
     <string name="ram">RAM</string>
     <string name="fingerprint">Fingerprint</string>
     <string name="display">Display</string>
+    <string name="view_all">View all</string>
+    <string name="abstract_animations">Abstract Animations</string>
+    <string name="cartoon_animations">Cartoon Animations</string>
+    <string name="heart_animations">Heart Animations</string>
+    <string name="charging_animations">Charging Animations</string>
 </resources>

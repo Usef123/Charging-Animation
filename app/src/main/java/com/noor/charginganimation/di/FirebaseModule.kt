@@ -10,6 +10,7 @@ import com.noor.charginganimation.domain.usecase.AddAnimation
 import com.noor.charginganimation.domain.usecase.DeleteAnimation
 import com.noor.charginganimation.domain.usecase.GetAnimations
 import com.noor.charginganimation.domain.usecase.GetAnimationsByCategory
+import com.noor.charginganimation.domain.usecase.GetAnimationsForSpecificCategory
 import com.noor.charginganimation.domain.usecase.UseCases
 import dagger.Module
 import dagger.Provides
@@ -34,6 +35,7 @@ object FirebaseModule {
     ) = UseCases(
         getAnimations = GetAnimations(repo),
         getAnimationsByCategory = GetAnimationsByCategory(repo),
+        getAnimationsForSpecificCategory = GetAnimationsForSpecificCategory(repo),
         addAnimation = AddAnimation(repo),
         deleteAnimation = DeleteAnimation(repo)
     )
