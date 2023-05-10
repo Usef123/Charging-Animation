@@ -1,21 +1,19 @@
-package com.noor.charginganimation.presentation.fragments.animations
+package com.noor.charginganimation.presentation.fragments.animations.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import coil.transform.CircleCropTransformation
 import com.noor.charginganimation.R
 import com.noor.charginganimation.core.extensions.click
 import com.noor.charginganimation.databinding.ItemAnimationBinding
 import com.noor.charginganimation.domain.model.Animation
-import timber.log.Timber
 
-class AnimationsAdapter(
+class CartoonAnimationsAdapter(
     private val onItemClick: (animation: Animation) -> Unit,
     private val onDeleteClick: (animation: Animation) -> Unit
-) : RecyclerView.Adapter<AnimationsAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<CartoonAnimationsAdapter.ViewHolder>() {
 
     private val animations = ArrayList<Animation>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -53,9 +51,11 @@ class AnimationsAdapter(
         }
     }
 
-    fun setData(animList: List<Animation>) {
+    fun setFirstThree(animList: List<Animation>) {
         this.animations.clear()
-        this.animations.addAll(animList)
+        this.animations.add(animList[0])
+        this.animations.add(animList[1])
+        this.animations.add(animList[2])
         notifyDataSetChanged()
     }
 

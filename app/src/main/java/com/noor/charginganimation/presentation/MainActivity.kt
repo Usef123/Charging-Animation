@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
     private fun handleBottomNavigationVisibility() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.animFragment -> bottomNavigationView.show()
+                R.id.animationsAndThemesFragment -> bottomNavigationView.show()
                 R.id.homeFragment -> bottomNavigationView.show()
                 R.id.settingsFragment -> bottomNavigationView.show()
                 else -> bottomNavigationView.hide()

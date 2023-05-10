@@ -2,8 +2,8 @@ package com.noor.charginganimation.domain.usecase
 
 import com.noor.charginganimation.domain.repository.AnimationRepository
 
-class GetAnimationsByCategory (
+class GetAnimationsForSpecificCategory (
     private val repo: AnimationRepository
 ) {
-    operator fun invoke(category: String) = repo.getAnimationsByCategoryResponse(category)
+    suspend operator fun invoke(category: String) = repo.getAnimationsForSpecificCategory(category)
 }

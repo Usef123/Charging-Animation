@@ -37,4 +37,27 @@
         android:name="com.noor.charginganimation.presentation.fragments.BatteryInfoFragment"
         android:label="fragment_battery_info"
         tools:layout="@layout/fragment_battery_info" />
+    <fragment
+        android:id="@+id/animationsAndThemesFragment"
+        android:name="com.noor.charginganimation.presentation.fragments.AnimationsAndThemesFragment"
+        android:label="fragment_animations_and_themes"
+        tools:layout="@layout/fragment_animations_and_themes" >
+        <action
+            android:id="@+id/action_animationsAndThemesFragment_to_allAnimationsFragment"
+            app:destination="@id/allAnimationsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/themeFragment"
+        android:name="com.noor.charginganimation.presentation.fragments.themes.ThemeFragment"
+        android:label="fragment_theme"
+        tools:layout="@layout/fragment_theme" />
+    <fragment
+        android:id="@+id/allAnimationsFragment"
+        android:name="com.noor.charginganimation.presentation.fragments.animations.AllAnimationsFragment"
+        android:label="fragment_all_animations"
+        tools:layout="@layout/fragment_all_animations" >
+        <argument
+            android:name="category"
+            app:argType="string" />
+    </fragment>
 </navigation>

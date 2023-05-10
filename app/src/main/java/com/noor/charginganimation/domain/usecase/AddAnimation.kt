@@ -8,6 +8,7 @@ class AddAnimation(
     suspend operator fun invoke(
         name: String,
         url: String,
-        category: String
-    ) = repo.addAnimationToFireStore(name, url, category)
+        category: String,
+        thumbnail: String
+    ) = repo.addAnimationToFireStore(name, url, category, thumbnail)
 }

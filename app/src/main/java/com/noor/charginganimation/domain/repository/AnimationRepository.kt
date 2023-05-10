@@ -13,9 +13,13 @@ interface AnimationRepository {
 
     fun getAnimationsFromFireStore(): Flow<AnimationResponse>
 
-    fun getAnimationsByCategory(category: String): Flow<AnimationResponse>
+    fun getAnimationsByCategoryResponse(category: String): Flow<AnimationResponse>
 
-    suspend fun addAnimationToFireStore(name: String, url: String, category: String): AddAnimationResponse
+    suspend fun getAnimationsForSpecificCategory(category: String): AnimationResponse
+
+    fun getAnimationsByCategory(category: String): Flow<List<Animation>>
+
+    suspend fun addAnimationToFireStore(name: String, url: String, category: String, thumbnail: String): AddAnimationResponse
 
     suspend fun deleteAnimationFromFireStore(animId: String): DeleteAnimationResponse
 }
